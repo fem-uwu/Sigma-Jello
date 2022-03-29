@@ -1,0 +1,37 @@
+_G.MusicIDs = {"1","2","3","4"}
+
+local Jello = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local JelloW = Jello.CreateLib("Jello", "Synapse")
+local mT = JelloW:NewTab("Music")
+local music = mT:NewSection("Music")
+-- custom 
+music:NewDropdown("Music Selecter","Select your music choice",_G.MusicIDs,function(id)
+    _G.musicID = id
+end)
+music:NewToggle("Looped","Makes the music looped",function(loop)
+    if loop then
+        _G.looped = true
+    else
+        _G.looped = false
+    end
+end)
+music:NewSlider("Pitch","Sets the music pitch",100,1,function(p)
+    _G.mPitch = p
+end)
+music:NewSlider("Volume","Sets the music volume",100,1,function(v)
+    _G.volume = v
+end)
+music:NewToggle("Play Music","Plays the selected music",function(playing)
+    if playing then
+        local m = Instance.new("Sound",workspace)
+        m.Name = "Jello Music: ".._G.musicID
+        m.Looped = _G.looped or false
+        m.Pitch = _G.mPitch or 1
+        m.SoundId = _G.musicID
+        m.Volume = _G.volume or 1
+        m:Play()
+    else
+        workspace["Jello Music: ".._G.musicID]:Stop()
+    end
+end)
+        
