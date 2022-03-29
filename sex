@@ -1,9 +1,5 @@
 local oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-
 repeat task.wait() until game.Players.LocalPlayer.Character.Humanoid.MoveDirection ~= Vector3.new(0, 0, 0)
-
 task.wait(1)
-
 local newpos = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, 0, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
-
 print((newpos - Vector3.new(oldpos.X, 0, oldpos.Z)).magnitude)
